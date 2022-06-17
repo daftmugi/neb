@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{m.title} - Neb Web</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/mod_info.css">
+    <script defer src="/xbbcode.js"></script>
+    <script defer src="/bbparser.js"></script>
+    <script defer src="/mod_info.js"></script>
+  </head>
+  <body style="background-color: #111">
+    <nav class="site-nav">
+      <div class="nav-container">
+        <div>
+          <span class="site-title">Neb Web</span>
+        </div>
+        <div class="site-links">
+          <a href="/mods">Mods</a> <a href="/about">About</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <h1><a href="/mods">Mods/</a>{m.title}</h1>
+
+      <select id="select-version" class="select-version" autocomplete="off">
+        {{ for version in versions }}
+          {{ if version.is_selected }}
+            <option selected value="/mods/{mid}/{version.text}">{version.text}</option>
+          {{ else }}
+            <option value="/mods/{mid}/{version.text}">{version.text}</option>
+          {{ endif }}
+        {{ endfor }}
+      </select>
+
+      <p class="last-updated">
+        Last updated: {m.last_update} (First release: {m.first_release})
+        <a class="mod-json-link" href="{url_path}/mod.json">mod.json</a>
+      </p>
+
+      {{ if m.banner }}
+      <img class="banner" src="{m.banner}">
+      {{ else }}
+      <div class="banner"></div>
+      {{ endif }}
+
+      <section>
+        <div id="description" class="description">{m.description}</div>
+      </section>
+
+      {{ if m.release_thread }}
+      <section>
+        <h2>Release Thread</h2>
+        <a rel="noopener noreferrer" href="{m.release_thread}">
+          {m.release_thread}
+        </a>
+      </section>
+      {{ endif }}
+
+      {{ if is_total_conversion }}
+      <section>
+        <h2>Total Conversion</h2>
+
+        <p>This mod is a total conversion, so do not install it like a
+        regular mod for FreeSpace 2.</p>
+      </section>
+      {{ endif }}
+
+      <section>
+        <h2>Files</h2>
+
+        <div class="file-list">
+          {{ for p in packages }}
+          <div class="file-item">
+            <div><b>{p.name}</b> ({p.status})</div>
+            <div><p>{p.notes}</p></div>
+            <div>
+              {p.filename} ({p.filesize | bytes})
+              {{ for url in p.urls }}
+              | <a rel="noopener noreferrer" href="{url}">{url | hostname}</a>
+              {{ endfor }}
+            </div>
+            <div class="file-checksum">SHA256: {p.checksum}</div>
+          </div>
+          {{ endfor }}
+        </div>
+      </section>
+
+      <section>
+        <h2>Total Download Size</h2>
+        <pre class="code-box">{total_size | bytes}</pre>
+      </section>
+
+      <section>
+        <h2>SHA256SUM (optional; <a rel="noopener noreferrer" href="/about#how-to-verify-checksum">?</a>)</h2>
+        <div class="code-box-container">
+          <span id="copy-sha256sum-message" class="copy-sha256sum-message hidden">Copied</span>
+          <button id="copy-sha256sum-btn" class="copy-sha256sum-btn">
+            <svg class="icon-content-copy" xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 48 48" fill="currentColor"><path d="M15 37.95Q13.8 37.95 12.9 37.05Q12 36.15 12 34.95V6.95Q12 5.75 12.9 4.85Q13.8 3.95 15 3.95H37Q38.2 3.95 39.1 4.85Q40 5.75 40 6.95V34.95Q40 36.15 39.1 37.05Q38.2 37.95 37 37.95ZM15 34.95H37Q37 34.95 37 34.95Q37 34.95 37 34.95V6.95Q37 6.95 37 6.95Q37 6.95 37 6.95H15Q15 6.95 15 6.95Q15 6.95 15 6.95V34.95Q15 34.95 15 34.95Q15 34.95 15 34.95ZM9 43.95Q7.8 43.95 6.9 43.05Q6 42.15 6 40.95V10.8H9V40.95Q9 40.95 9 40.95Q9 40.95 9 40.95H32.7V43.95ZM15 6.95Q15 6.95 15 6.95Q15 6.95 15 6.95V34.95Q15 34.95 15 34.95Q15 34.95 15 34.95Q15 34.95 15 34.95Q15 34.95 15 34.95V6.95Q15 6.95 15 6.95Q15 6.95 15 6.95Z"/></svg>
+            <svg class="icon-done hidden" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+          </button>
+          <pre id="sha256sum" class="code-box">{sha256sum}</pre>
+        </div>
+      </section>
+
+      {{ if dependencies }}
+      <section>
+        <h2>Dependencies</h2>
+        <ul>
+        {{ for p_d in dependencies }}
+        <li>{p_d.0}
+          <ul>
+          {{ for d in p_d.1 }}
+          <li><a rel="noopener noreferrer" href="/mods/{d.id}">{d.id}</a>{{ if d.version }} [{d.version}]{{ endif }}
+            {{ if d.packages }}
+            <ul>
+              {{ for package in d.packages }}
+              <li>{package}</li>
+              {{ endfor }}
+            </ul>
+            {{ endif }}
+          </li>
+          {{ endfor }}
+          </ul>
+        </li>
+        {{ endfor }}
+        </ul>
+      </section>
+      {{ endif }}
+
+      <section>
+        <h2>Mod Flag List Order (required order; may include optional mods; <a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Command-Line_Reference#-mod">?</a>)</h2>
+        <pre class="code-box">{modline}</pre>
+      </section>
+
+      {{ if m.cmdline }}
+      <section>
+        <h2 id="cmdline">Command-Line Flags (optional; <a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Command-Line_Reference">?</a>)</h2>
+        <pre class="code-box">{m.cmdline}</pre>
+      </section>
+      {{ endif }}
+
+      {{ if m.screenshots }}
+      <section>
+        <h2>Screenshots</h2>
+        <div class="screenshots">
+          {{ for url in m.screenshots }}
+          <img loading="lazy" class="screenshot" src="{url}">
+          {{ endfor }}
+        </div>
+      </section>
+      {{ endif }}
+
+      {{ if m.videos }}
+      <section>
+        <h2>Videos</h2>
+        <ul>
+          {{ for url in m.videos }}
+          <li><a rel="noopener noreferrer" href="{url}">{url}</a></li>
+          {{ endfor }}
+        </ul>
+      </section>
+      {{ endif }}
+    </main>
+  </body>
+</html>

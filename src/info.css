@@ -1,0 +1,182 @@
+main {
+  padding: 25px 0;
+  width: min(90vw, 1000px);
+  margin: 0 auto;
+}
+
+section {
+  margin-bottom: 4em;
+}
+
+section:last-child {
+  margin-bottom: 0;
+}
+
+h1 {
+  display: inline-block;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  font-size: 32px;
+}
+
+.select-version {
+  color: inherit;
+  background-color: #2a2a2a;
+  padding: 0 8px;
+  border: none;
+  border-radius: 5px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.select-version:hover {
+  background-color: #555;
+}
+
+.last-updated {
+  margin: 0;
+  margin-bottom: 40px;
+  padding: 0;
+  color: #868686;
+}
+
+.mod-json-link {
+  padding: 0px 5px;
+  background-color: #2a2a2a;
+  border-radius: 5px;
+}
+
+.banner {
+  margin-bottom: 40px;
+  width: min(90vw, 1000px);
+  aspect-ratio: 1070 / 300;
+  background-color: #555;
+  filter: drop-shadow(0 0 15px #7777bf);
+}
+
+.description {
+  margin-bottom: 30px;
+}
+
+.description hr {
+  border: 0;
+  height: 4px;
+  background-color: #555;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.file-list {
+  display: grid;
+  grid-template-columns: min(90vw, 1000px);
+  grid-gap: 0;
+}
+
+.file-item:first-child {
+  border-top: 2px solid #222;
+}
+
+.file-item {
+  border-left: 2px solid #222;
+  border-right: 2px solid #222;
+  border-bottom: 2px solid #222;
+  padding: 20px;
+}
+
+.file-checksum {
+  overflow-wrap: anywhere;
+}
+
+.code-box-container {
+  position: relative;
+}
+
+.copy-sha256sum-message {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 32px;
+  top: 5px;
+  right: 32px;
+  font-size: 16px;
+
+  opacity: 0;
+  color: #eee;
+  background-color: #06b000;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.copy-sha256sum-btn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  top: 5px;
+  right: 5px;
+
+  /* will-change fixes residual artifacts on Safari */
+  will-change: opacity, filter;
+
+  transition: opacity 150ms;
+  opacity: 0;
+  color: #555;
+  background-color: #111;
+  border: 2px solid #555;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+.copy-sha256sum-btn svg {
+  height: 24px;
+}
+
+.code-box-container:hover .copy-sha256sum-btn {
+  opacity: 0.7;
+}
+
+.code-box-container:hover .copy-sha256sum-btn-show {
+  opacity: 1.0;
+}
+
+.code-box-container:hover .copy-sha256sum-btn:hover {
+  opacity: 1.0;
+}
+
+.copy-sha256sum-message-show,
+.copy-sha256sum-btn-show {
+  opacity: 1.0;
+}
+
+.copy-sha256sum-btn:hover {
+  filter: brightness(130%);
+}
+
+.copy-sha256sum-btn-show:hover {
+  filter: brightness(100%);
+}
+
+.copy-sha256sum-btn-show {
+  border-color: #06b000;
+  color: #06b000;
+}
+
+.hidden {
+  display: none;
+}
+
+.screenshots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 10px;
+}
+
+.screenshot {
+  width: 100%;
+  margin: 0 auto;
+}

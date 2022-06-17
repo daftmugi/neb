@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Neb Web</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/index.css">
+  </head>
+  <body style="background-color: #111">
+    <nav class="site-nav">
+      <div class="nav-container">
+        <div>
+          <span class="site-title">Neb Web</span>
+        </div>
+        <div class="site-links">
+          <a href="/mods">Mods</a> <a href="/about">About</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section>
+        <h2>What is Knossos and FSNebula?</h2>
+
+        <p>The <a rel="noopener noreferrer"
+        href="https://fsnebula.org/knossos/">Knossos</a> client has
+        become the de facto way to download and install mods for <a
+        rel="noopener noreferrer"
+        href="https://www.hard-light.net/">FreeSpace Open</a>. Knossos
+        syncs with the <a rel="noopener noreferrer"
+        href="https://fsnebula.org/">FSNebula</a> server to get
+        information about mods. Knossos makes downloading, installing,
+        configuring, and launching mods much easier. It's a great
+        tool!</p>
+      </section>
+
+      <section>
+        <h2>What is Neb and Neb Web?</h2>
+
+        <p>Neb and Neb Web exist for those who cannot get Knossos
+        installed on their system and need access to more information
+        about a mod to manually install it correctly, or it's for
+        those who want a way to explore Knossos data. It's an
+        alternative way to sync with FSNebula. Neb is a command-line
+        tool that does all of the work. Neb Web is the web view.</p>
+
+        <p>There's data about mods that is only available in the Knossos repository:</p>
+        <ul>
+          <li>mod description</li>
+          <li>mod flag list order</li>
+          <li>command-line flags</li>
+          <li>whether or not a mod file is required, recommended, or optional</li>
+          <li>dependencies and their versions</li>
+        </ul>
+
+        <p>Neb and Neb Web make that data available outside of Knossos!</p>
+      </section>
+
+      <section>
+        <h2>Neb and Neb Web Source Code</h2>
+        <p><a rel="noopener noreferrer" href="https://github.com/daftmugi/neb">https://github.com/daftmugi/neb</a></p>
+
+        <p>Run a local copy if you want!</p>
+      </section>
+
+      <section>
+        <h2>Note</h2>
+
+        <p>This site periodically syncs with FSNebula. There is a
+        delay between FSNebula being updated and this site reflecting
+        those updates.</p>
+
+        <p>Also, a <a rel="noopener noreferrer"
+        href="https://github.com/ngld/knossos">new Knossos and
+        FSNebula</a> is being worked on. This site is not compatible
+        with those efforts, so this site may cease to be accurate when
+        the community switches to that new tool.</p>
+      </section>
+
+      <section>
+        <h2>Need Help?</h2>
+
+        <ul>
+          <li>Ask on the <a rel="noopener noreferrer" href="https://www.hard-light.net/forums/">Hard Light Productions Forums</a>.</li>
+          <li>Check out <a rel="noopener noreferrer" href="https://www.hard-light.net">Hard Light Productions</a> for Discord, Reddit, etc.</li>
+          <li>Read documentation on the <a rel="noopener noreferrer" href="https://wiki.hard-light.net">Hard Light Productions Wiki</a>.</li>
+          <li>This <a rel="noopener noreferrer" href="https://www.hard-light.net/forums/index.php?topic=97559.0">forum thread</a> started by redmagejoe is a good read for recent troubleshooting efforts.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Without Knossos, What's One To Do?</h2>
+
+        <p>Well, you'll have some work ahead of you if you install and
+        configure things manually. It's not bad, though. Some prefer
+        it that way!</p>
+
+        <p>The following guide is what I wish I had when I started
+        out. It's verbose, so you can more easily check that you've
+        got things right at each step. Good luck! Have fun!</p>
+      </section>
+
+      <section>
+        <h2>Table of Contents</h2>
+
+        <ul>
+          <li><a href="#how-to-install-freespace">How to Install FreeSpace 2</a></li>
+          <li><a href="#how-to-download-mod">How to Manually Download a Mod</a></li>
+          <li><a href="#how-to-install-mod">How to Manually Install a Mod</a></li>
+          <li><a href="#how-to-launch-mod">How to Manually Launch a Mod</a></li>
+          <li><a href="#about-mod-paths">About Mod Paths</a></li>
+          <li><a href="#how-to-configure-freespace">How to Manually Configure FreeSpace Open</a></li>
+          <li><a href="#how-to-configure-graphics">How to Manually Configure Graphics</a></li>
+          <li><a href="#how-to-verify-checksum">How to Verify SHA-256 Checksum</a></li>
+          <li><a href="#example-fsport">Example: Install FreeSpace Port (Linux)</a></li>
+          <li><a href="#example-mvps">Example: Install Freespace Upgrade MediaVPs (Linux)</a></li>
+          <li><a href="#example-fsport-mediavps">Example: Install FreeSpace Port MediaVPs (Linux)</a></li>
+          <li><a href="#example-str-mainhalls">Example: Install "Silent Threat: Reborn" and Mainhalls (Linux)</a></li>
+          <li><a href="#troubleshooting">Troubleshooting</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 id="how-to-install-freespace">How to Install FreeSpace 2</h2>
+
+        <ol>
+          <li>Buy <a rel="noopener noreferrer" href="https://www.gog.com/game/freespace_expansion">FreeSpace 1</a> and <a rel="noopener noreferrer" href="https://www.gog.com/game/freespace_2">FreeSpace 2</a> from <a rel="noopener noreferrer" href="https://www.gog.com/">GOG</a>.</li>
+          <li>Install FreeSpace 2 on Windows, Windows in a virtual machine, or in <a rel="noopener noreferrer" href="https://www.winehq.org/">Wine</a>.</li>
+          <li>Copy files from the game directory to another directory of your choosing.
+
+            <p><strong>NOTE:</strong> Make sure you copy the movie
+            files from the <code>/data2/movies</code> and
+            <code>/data3/movies</code> directories from the resulting
+            GOG installation.</p>
+
+            <p>A minimum file tree looks like:</p>
+
+            <pre>fsopen
+├── data
+│   ├── movies
+│   │   ├── BASTION.MVE
+│   │   ├── COLOSSUS.MVE
+│   │   ├── ENDPART1.MVE
+│   │   ├── ENDPRT2A.MVE
+│   │   ├── ENDPRT2B.MVE
+│   │   ├── INTRO.MVE
+│   │   ├── MONO1.MVE
+│   │   ├── MONO2.MVE
+│   │   ├── MONO3.MVE
+│   │   └── MONO4.MVE
+│   └── players
+│       ├── hud_1.hcf
+│       ├── hud_2.hcf
+│       └── hud_3.hcf
+├── root_fs2.vp
+├── smarty_fs2.vp
+├── sparky_fs2.vp
+├── sparky_hi_fs2.vp
+├── stu_fs2.vp
+├── tango1_fs2.vp
+├── tango2_fs2.vp
+├── tango3_fs2.vp
+└── warble_fs2.vp
+
+3 directories, 22 files</pre>
+
+            <p>(Optional) And, SHA-256 checksums [<a href="#how-to-verify-checksum">?</a>]:</p>
+
+            <pre>366bd359b70e0bf9ae0b74e96093c6389ca19fbc8f20747efc70c96f401557f4  data/movies/BASTION.MVE
+e449cfa1a6ccbe900d57f0c1cff247ba7615af83bab885b2c6c9df94fcd8cd5b  data/movies/COLOSSUS.MVE
+e0917c4a0c0458fefbd87fdb567b8ad646bd62e508edc1b18ea8bb43b23c6100  data/movies/ENDPART1.MVE
+e799229207d6bc2a89dd8eb6c93e4c89b23ce3f72a92cf9b885d87b15a6e92d7  data/movies/ENDPRT2A.MVE
+266e77f2a3202e8dbc2185410d8b081b2eaae28ac4d17da208c9cb6e2f419218  data/movies/ENDPRT2B.MVE
+ab2eae1a1c9a7bd93ee159b314008f4b14ac69a0c66ab4538a112fa009fb34b6  data/movies/INTRO.MVE
+fa2e380384e7c3e140c351d789bf71b00ec3549ae53f9766833e8b56dba9f2e3  data/movies/MONO1.MVE
+ace50e10bb579599a3504d5b20b8daba4a81d363f4d0dae6eb572ce341740376  data/movies/MONO2.MVE
+358c0034164e102103c6a782b4ebce22c9c2f872c4624d9365b9e9ecf683c662  data/movies/MONO3.MVE
+c287d10f610a221ce717abf687f94c37ba84030b4636049d34800655d88df267  data/movies/MONO4.MVE
+408ff6e17cd9881322943665d56c2672735a75e938d701f1d270e2fd5bcc70cf  data/players/hud_1.hcf
+44d9cd1f8a7769c3b0593ce9da7149fc1b3821436a14b3791c10478c1b082feb  data/players/hud_2.hcf
+538f15f911a007ae9d5f08af3810895370c2e136b1ae1e532bf59f0dd13cf885  data/players/hud_3.hcf
+a796243434945af28f16331421bf472efbc86de86d47c39c1b399bcf7fe2bd6a  root_fs2.vp
+3307d19f06fba6ca57b3982aca077e23c1b8344791d2974ccfd54dc3cf16dd9a  smarty_fs2.vp
+72df504ac5a2fdadf28b11aba255ed4bc5e1add6dc773ca2653d8d81fc5c4a92  sparky_fs2.vp
+ff82ebae70372665fdcebb0bfb8ee89e2635f6d4eaaa23ba33260b567ca16db7  sparky_hi_fs2.vp
+e6da7b2320b037d4f523d82fe844df8278a47e5c006332a99faf45095787bcd2  stu_fs2.vp
+164a0c5b910f0cbb2eb0c2a0e7679a271a517ebec3a3163f6e902ff983b23238  tango1_fs2.vp
+3570d261dfdfccf914969ba9365d28559bd28ad13a696c139fd2248324853fdb  tango2_fs2.vp
+36b01ab93ef2c290210d7755a29458bb4606763c8fe7561d47ff431703a2e171  tango3_fs2.vp
+d1a8a8d363b5d612df915ca0610a083ebcec2ade74f4b6343920534b181c1bac  warble_fs2.vp</pre>
+          </li>
+
+          <li>Download and install <a href="/mods/FSO">FreeSpace Open</a> (FSO).
+
+            <p><strong>NOTE:</strong> You'll need to pay close
+            attention to the version. By default, The most recent
+            version is shown. In the case of FSO, this is likely a
+            development build. A version in the form of
+            <code>22.1.0-20220608</code> is a development build and
+            <code>22.0.0-RC4</code> is a release candidate (yet
+            another kind of development build). You likely want a
+            stable build, such as <code>22.0.0</code>, which you can
+            choose from the dropdown list at the top of the page next
+            to the mod title.</p>
+
+            <p>If you want to build your own version of FSO from
+            source, see the <a rel="noopener noreferrer"
+            href="https://github.com/scp-fs2open/fs2open.github.com/wiki/Building">build
+            instructions</a> on FSO's GitHub page.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 id="how-to-download-mod">How to Manually Download a Mod</h2>
+
+        <ol>
+          <li>Go to a mod page.</li>
+          <li>Download the required files.</li>
+          <li>(Optional) Download the optional files.</li>
+          <li>(Optional) Copy the <code>SHA256SUM</code> as a file to
+          the same location as the downloaded files, and ensure that
+          the checksums match. See <a href="#how-to-verify-checksum">How to
+          Verify SHA-256 Checksum</a>.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 id="how-to-install-mod">How to Manually Install a Mod</h2>
+
+        <ol>
+          <li>
+            <p>Extract the (7z) files into a directory using 7-Zip or
+            equivalent tool.</p>
+
+            <p>If you're extracting the files on the command line,
+            extracting each file one by one can be tedious. On Linux,
+            extracting multiple 7z files can be done as follows:</p>
+
+            <pre>7z x -o"MODNAME" "*.7z"</pre>
+
+            <p><strong>NOTE:</strong> The double quotes around
+            <code>*.7z</code> are required when extracting multiple
+            files! It's <code>"*.7z"</code>, not
+            <code>*.7z</code>.</p>
+
+            <p>For example:</p>
+
+            <pre>7z x -o"MVPS-4.5.1" "*.7z"</pre>
+          </li>
+
+          <li>
+            <p>Move that directory to your FreeSpace Open directory.</p>
+
+            <p>It's recommended to give it a name, such as a
+            <code>mod_id-x-y-z</code>. For example, the "Freespace
+            Upgrade MediaVPs" mod has a mod id of
+            <code>MVPS</code>. For version <code>4.5.1</code>,
+            choosing a directory name of <code>MVPS-4.5.1</code> is a
+            good choice. To be clear, if FreeSpace Open is installed
+            at <code>fsopen</code>, you could choose to move the
+            extracted mod files to <code>fsopen/MVPS-4.5.1</code>.</p>
+          </li>
+
+          <li>
+            <p>Download and install mod dependencies.</p>
+
+            <p>Look at the Dependencies section. If there are
+            dependencies that you do not have yet, download those
+            before continuing. This section shows mod ids. So, if you
+            see a mod id of "MVPS" that is the "Freespace Upgrade
+            MediaVPs" mod. You you can navigate to a mod page by using
+            its mod id in the URL. The URL is of the form
+            <code>/mods/MOD_ID</code>. For MVPS, its page it is at
+            <code>/mods/MVPS</code>.</p>
+
+            <p><strong>NOTE:</strong> The required version of a mod
+            may be important! If you already have a dependency but
+            it's a more recent version, you may need to make sure
+            it'll work properly. Otherwise, use the specified
+            version. To select a version on this site, use the
+            dropdown list at the top of a mod page next to the
+            title. Or, use a URL of the form
+            <code>/mods/MOD_ID/VERSION</code>.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 id="how-to-launch-mod">How to Manually Launch a Mod</h2>
+
+        <ol>
+          <li>
+            <p>Look at the Mod Flag List Order section on the mod
+            page. That shows the required order that mods need to be
+            specified in order to load correctly. Add
+            <code>-mod</code> and the mod flag list when launching
+            <code>fs2_open</code>. See <a rel="noopener noreferrer"
+            href="https://wiki.hard-light.net/index.php/Command-Line_Reference#-mod">-mod</a>
+            flag on the HLP Wiki.</p>
+          </li>
+
+          <li>
+            <p>(Optional) Look at the Command-Line Flags section (if
+            there is one) on the mod page. Choose what you want from
+            that list and use them when launching
+            <code>fs2_open</code>, or you can add them to the <a
+            rel="noopener noreferrer"
+            href="https://wiki.hard-light.net/index.php/Launcher_engine_interaction#data.2Fcmdline_fso.cfg">cmdline_fso.cfg</a> file.</p>
+
+            <p>(See <a rel="noopener noreferrer"
+            href="https://wiki.hard-light.net/index.php/Launcher_engine_interaction">Launcher
+            Engine Interaction</a> and <a rel="noopener noreferrer"
+            href="https://wiki.hard-light.net/index.php/Command-Line_Reference">Command-Line
+            Reference</a> on the Hard Light Productions Wiki.)</p>
+          </li>
+
+          <li>
+            <p>Launch the mod. For example, to launch "FreeSpace Port" with "MediaVPs":</p>
+
+            <pre>fs2_open -mod fsport-mediavps-4.5.1,fsport-3.6.9,MVPS-4.5.1</pre>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 id="about-mod-paths">About Mod Paths</h2>
+
+        <p>See <a rel="noopener noreferrer"
+        href="https://wiki.hard-light.net/index.php/Command-Line_Reference#-mod">-mod</a>
+        flag on the HLP Wiki.</p>
+
+        <p>So far in this document, directories for mods have been put
+        in the game root directory, <code>fsopen</code>.</p>
+
+        <pre>fsopen
+├── data
+│   ├── movies
+│   └── players
+├── fsport-3.6.9
+├── fsport-mediavps-4.5.1
+├── MVPS-4.5.1
+└── str-1.6.0</pre>
+
+        <p>That makes the mod flag list simpler to refer to. For
+        example, "Silent Threat: Reborn" would have the mod flag
+        list:</p>
+
+        <pre>-mod fsport-mediavps-4.5.1,str-1.6.0,fsport-3.6.9,MVPS-4.5.1</pre>
+
+        <p>However, the mod directories can be in another directory,
+        if you want that organization. For example, you could choose
+        to place the mods in a <code>mods</code> directory.</p>
+
+        <pre>fsopen
+├── data
+│   ├── movies
+│   └── players
+└── mods
+    ├── fsport-3.6.9
+    ├── fsport-mediavps-4.5.1
+    ├── MVPS-4.5.1
+    └── str-1.6.0</pre>
+
+        <p>Then, the mod flag list would be:</p>
+
+        <pre>-mod mods/fsport-mediavps-4.5.1,mods/str-1.6.0,mods/fsport-3.6.9,mods/MVPS-4.5.1</pre>
+
+        <p><strong>TIP:</strong> You can create your own patch by
+        creating your own <code>mod</code> directory and putting it
+        before other mods in the mod flag list. For example:</p>
+
+        <pre>fs2_open -mod mypatch,fsport</pre>
+
+        Or, if you have a <code>mods</code> directory:
+
+        <pre>fs2_open -mod mods/mypatch,mods/fsport</pre>
+      </section>
+
+      <section>
+        <h2 id="how-to-configure-freespace">How to Manually Configure FreeSpace Open</h2>
+
+        <ul>
+          <li>When doing things manually, there's no need for a launcher, <a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Mod.ini">mod.ini</a> file, or <code>mod.json</code> file.</li>
+
+          <li>Configure <a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Launcher_engine_interaction#fs2_open.ini">fs2_open.ini</a> as you like.
+
+            <p>For example, a <code>fs2_open.ini</code> file could be:</p>
+
+            <pre>[Default]
+VideocardFs2open=OGL -(1920x1080)x32 bit
+TextureFilter=1</pre>
+          </li>
+
+          <li>Configure <a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Launcher_engine_interaction#data.2Fcmdline_fso.cfg">cmdline_fso.cfg</a> as you like.
+
+            <p>For example, a <code>cmdline_fso.cfg</code> file could be:</p>
+
+            <pre>-targetinfo -rearm_timer -anisotropic_filter 16 -aa -soft_particles -fb_explosions -3dwarp -warp_flash</pre>
+          </li>
+
+          <li>Some command-line flags (<code>cmdline_fso.cfg</code>) of interest:
+            <ul>
+              <li><a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Command-Line_Reference#-targetinfo">-targetinfo</a></li>
+              <li><a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Command-Line_Reference#-rearm_timer">-rearm_timer</a></li>
+            </ul>
+          </li>
+
+          <li>For more info than you'll probably ever need, check out <a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/FS2_Data_Structure">FS2 Data Structure</a> on the HLP Wiki.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 id="how-to-configure-graphics">How to Manually Configure Graphics</h2>
+
+        <ul>
+          <li>Some command-line flags (<code>cmdline_fso.cfg</code>) of interest:
+            <ul>
+              <li><a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Command-Line_Reference#-fb_explosions">-fb_explosions</a></li>
+              <li><a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Command-Line_Reference#-3dwarp">-3dwarp</a></li>
+              <li><a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Command-Line_Reference#-warp_flash">-warp_flash</a></li>
+              <li><a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Command-Line_Reference#-soft_particles">-soft_particles</a></li>
+              <li><a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Command-Line_Reference#-anisotropic_filter">-anisotropic_filter</a></li>
+              <li><a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Command-Line_Reference#-aa">-aa</a></li>
+            </ul>
+          </li>
+          <li>Read FrikgFeek's <a rel="noopener noreferrer" href="https://www.hard-light.net/forums/index.php?topic=96325.msg1893754#msg1893754">description of graphics settings</a>.</li>
+          <li>Try out <a href="/mods/MVPS#cmdline">MVPS Command-Line Flags</a>.</li>
+          <li>Try out <a rel="noopener noreferrer" href="https://www.hard-light.net/forums/index.php?topic=95670.msg1883821#msg1883821">Mito [PL]'s recommendation</a>.</li>
+          <li>Try out <a rel="noopener noreferrer" href="https://wiki.hard-light.net/index.php/Sample_Lighting_Settings">Sample Lighting Settings</a> from the HLP Wiki.</li>
+          <li>NOTE: Lighting flags will likely change soon. See <a rel="noopener noreferrer" href="https://www.hard-light.net/forums/index.php?topic=98195.0">The future of lighting flags in FSO</a> on the forums.</li>
+          <li>You may ignore the following lighting flags: <a rel="noopener noreferrer" href="https://www.hard-light.net/forums/index.php?topic=98195.msg1914238#msg1914238">spec_exp</a> and <a rel="noopener noreferrer" href="https://www.hard-light.net/forums/index.php?topic=98195.msg1914238#msg1914238">no_emissive_light</a>.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 id="how-to-verify-checksum">How to Verify SHA-256 Checksum</h2>
+
+        <p>Given a <code>SHA256SUM</code> file and the files to check are in the same directory:</p>
+
+        <h3>Linux</h3>
+
+        <pre>sha256sum -c SHA256SUM</pre>
+
+        <h3>macOS</h3>
+
+        <pre>shasum -a 256 -c SHA256SUM</pre>
+
+        <h3>Windows</h3>
+
+        <p>Windows does not have an equivalent tool to check a
+        checksum file against files in a directory, so verification
+        must be done one file at a time.</p>
+
+        <pre>certutil [options] -hashfile infile [hashalgorithm]</pre>
+      </section>
+
+      <section>
+        <h2 id="example-fsport">Example: Install FreeSpace Port (Linux)</h2>
+
+        <p>Given a fresh install of FreeSpace 2 and FreeSpace Open in the <code>fsopen</code> directory:</p>
+
+            <pre>fsopen
+├── data
+│   ├── movies
+│   │   ├── BASTION.MVE
+│   │   ├── COLOSSUS.MVE
+│   │   ├── ENDPART1.MVE
+│   │   ├── ENDPRT2A.MVE
+│   │   ├── ENDPRT2B.MVE
+│   │   ├── INTRO.MVE
+│   │   ├── MONO1.MVE
+│   │   ├── MONO2.MVE
+│   │   ├── MONO3.MVE
+│   │   └── MONO4.MVE
+│   └── players
+│       ├── hud_1.hcf
+│       ├── hud_2.hcf
+│       └── hud_3.hcf
+├── fs2_open
+├── root_fs2.vp
+├── smarty_fs2.vp
+├── sparky_fs2.vp
+├── sparky_hi_fs2.vp
+├── stu_fs2.vp
+├── tango1_fs2.vp
+├── tango2_fs2.vp
+├── tango3_fs2.vp
+└── warble_fs2.vp</pre>
+
+        <p>Download <a href="/mods/fsport/3.6.9">FreeSpace Port
+        (3.6.9)</a> files and SHA256SUM to the
+        <code>fsopen/downloads/fsport-3.6.9</code> directory.</p>
+
+        <pre>fsopen
+├── data
+│   ├── movies
+│   └── players
+├── downloads
+│   └── fsport-3.6.9
+│       ├── core.7z
+│       ├── SHA256SUM
+│       ├── stu.7z
+│       ├── tango.7z
+│       ├── tango_hi.7z
+│       └── warble.7z
+├── fs2_open
+├── root_fs2.vp
+├── smarty_fs2.vp
+├── sparky_fs2.vp
+├── sparky_hi_fs2.vp
+├── stu_fs2.vp
+├── tango1_fs2.vp
+├── tango2_fs2.vp
+├── tango3_fs2.vp
+└── warble_fs2.vp</pre>
+
+        <p>(Optional)</p>
+
+        <pre>27a47e40fd859b39356ecbc581759a9b0c289db1457e53791a6a294efc0bc90c core.7z
+18c5b09089228152669c1280d9a755a14dd41bd5545a34d94fa55c1214c685db tango.7z
+ed1e92fe8cf751cf5c7de4420081e11fb2cf2a2e5a04fcc66be709355d99162c tango_hi.7z
+6bbf77464b8ea54a0609cf09d9beb65d84b7a1c3721a19f5716be38d9c87a3f4 warble.7z
+b202dddbeff54c8da5b2d27bee132156373a3f43ade2d3e048fa126863952767 stu.7z</pre>
+
+        <p>(Optional) Verify files [<a href="#how-to-verify-checksum">?</a>].</p>
+
+        <pre>cd fsopen/downloads/fsport-3.6.9
+sha256sum -c SHA256SUM</pre>
+
+        <p>(Optional) The output should be:</p>
+
+        <pre>core.7z: OK
+tango.7z: OK
+tango_hi.7z: OK
+warble.7z: OK
+stu.7z: OK</pre>
+
+        <p>Extract files.</p>
+
+        <pre>7z x -o"fsport-3.6.9" "*.7z"</pre>
+
+        <p>Move extracted files to the mods directory in the main game
+        directory, <code>fsopen/mods/</code>.</p>
+
+        <pre>mkdir ../../mods
+mv fsport-3.6.9 ../../mods/</pre>
+
+        <p>(Optional) Install FreeSpace 1 (from GOG). Copy its movies
+        to the <code>fsport-3.6.9/data/movies</code> directory. Its
+        movies are in the <code>data1/Data/movies</code> and
+        <code>data2/data/movies</code> directories.</p>
+
+        <pre>82174b605d22981e1c7a58e6d11fdbe492d6ddd10a2b7c03b97f1949933f7419  data1/Data/movies/Intro.mve
+173a6cc20f4e622d4678bbadb1dfbda4b87f4083075beec7fb76d1256f9eae67  data1/Data/movies/lab.mve
+31a8438ea0c317ea23333364b6da1c20bc02fe8cef35d0c3d832dafd24c0ad36  data1/Data/movies/ancients1.mve
+c2617dfe2f3deaf0a70b5e199ba410d6bd2c7cfab2ce45d8912c236734797e47  data1/Data/movies/CommandBrief.mve
+f3b345fada7467d45b4526e445c9ce4523b708ba42ab90639fb73ccf0ee1c3e1  data2/data/movies/ancients2.mve
+fe22ba318f9bebedf0e991383ffadf3be5c58ef6da1291dc4eea036c22a8f9f1  data2/data/movies/ancients3.mve
+76ea1a59e7b07103bc2597503e68f91dcd3eadd87616613a9cdcea07c2a63b63  data2/data/movies/ENDGAME.MVE
+cb08b945c3c9b349912b567a09c65417f4f2219f19068bd2c60a031623c74324  data2/data/movies/ancients5.mve
+8aa2622ab315fba9a0f11d1ef2ecdbe3aacdbe3ac2b081f540b5a66a52ac8d2f  data2/data/movies/ancients4.mve
+16f1228940a95b7476b4208847ccffdaa7cc62af6da146ff3c1a335bb0afcab3  data2/data/movies/hallfight.mve</pre>
+
+        <p><strong>NOTE:</strong> The <code>Intro.mve</code> that
+        comes with the GOG installation is from "Conflict:
+        FreeSpace". If you have a "Descent: FreeSpace" CD, you can get
+        the "Descent: FreeSpace" version.</p>
+
+        <pre>8ec24c45373f0d2d98fa64cc632a05d8d46e5be7488f5e84f35bde9effdf9e73  data/movies/INTRO.MVE</pre>
+
+        <p><strong>NOTE:</strong> The movie files are also available
+        in <code>oden.7z</code>, or you could find another version.</p>
+
+        <p>The resulting file structure:</p>
+
+        <pre>fsopen
+├── data
+│   ├── movies
+│   │   ├── BASTION.MVE
+│   │   ├── COLOSSUS.MVE
+│   │   ├── ENDPART1.MVE
+│   │   ├── ENDPRT2A.MVE
+│   │   ├── ENDPRT2B.MVE
+│   │   ├── INTRO.MVE
+│   │   ├── MONO1.MVE
+│   │   ├── MONO2.MVE
+│   │   ├── MONO3.MVE
+│   │   └── MONO4.MVE
+│   └── players
+│       ├── hud_1.hcf
+│       ├── hud_2.hcf
+│       └── hud_3.hcf
+├── downloads
+│   └── fsport-3.6.9
+│       ├── core.7z
+│       ├── SHA256SUM
+│       ├── stu.7z
+│       ├── tango.7z
+│       ├── tango_hi.7z
+│       └── warble.7z
+├── mods
+│   └── fsport-3.6.9
+│       ├── data
+│       │   └── movies
+│       │       ├── ancients1.mve
+│       │       ├── ancients2.mve
+│       │       ├── ancients3.mve
+│       │       ├── ancients4.mve
+│       │       ├── ancients5.mve
+│       │       ├── CommandBrief.mve
+│       │       ├── ENDGAME.MVE
+│       │       ├── hallfight.mve
+│       │       ├── Intro.mve
+│       │       └── lab.mve
+│       ├── fsport3_6.vp
+│       ├── fsport-missions.vp
+│       ├── readme.txt
+│       ├── sparky_hi_fs1.vp
+│       ├── stu_fs1.vp
+│       ├── tango_fs1.vp
+│       ├── tango_hi1_fs1.vp
+│       ├── tango_hi2_fs1.vp
+│       ├── tango_hi3_fs1.vp
+│       ├── tango_hi4_fs1.vp
+│       ├── tango_hi5_fs1.vp
+│       └── warble_fs1.vp
+├── fs2_open
+├── root_fs2.vp
+├── smarty_fs2.vp
+├── sparky_fs2.vp
+├── sparky_hi_fs2.vp
+├── stu_fs2.vp
+├── tango1_fs2.vp
+├── tango2_fs2.vp
+├── tango3_fs2.vp
+└── warble_fs2.vp</pre>
+
+        <p>Launch the game.</p>
+
+        <pre>cd fsopen
+./fs2_open -mod mods/fsport-3.6.9</pre>
+      </section>
+
+      <section>
+        <h2 id="example-mvps">Example: Install Freespace Upgrade MediaVPs (Linux)</h2>
+
+        <p>Given a fresh install of FreeSpace 2 and FreeSpace Open in
+        the <code>fsopen</code> directory:</p>
+
+            <pre>fsopen
+├── data
+│   ├── movies
+│   │   ├── BASTION.MVE
+│   │   ├── COLOSSUS.MVE
+│   │   ├── ENDPART1.MVE
+│   │   ├── ENDPRT2A.MVE
+│   │   ├── ENDPRT2B.MVE
+│   │   ├── INTRO.MVE
+│   │   ├── MONO1.MVE
+│   │   ├── MONO2.MVE
+│   │   ├── MONO3.MVE
+│   │   └── MONO4.MVE
+│   └── players
+│       ├── hud_1.hcf
+│       ├── hud_2.hcf
+│       └── hud_3.hcf
+├── fs2_open
+├── root_fs2.vp
+├── smarty_fs2.vp
+├── sparky_fs2.vp
+├── sparky_hi_fs2.vp
+├── stu_fs2.vp
+├── tango1_fs2.vp
+├── tango2_fs2.vp
+├── tango3_fs2.vp
+└── warble_fs2.vp</pre>
+
+        <p>Download <a href="/mods/MVPS/4.5.1">Freespace Upgrade
+        MediaVPs (4.5.1)</a> files and SHA256SUM to the
+        <code>fsopen/downloads/MVPS-4.5.1</code> directory.</p>
+
+        <pre>fsopen
+├── data
+│   ├── movies
+│   └── players
+├── downloads
+│   └── MVPS-4.5.1
+│       ├── MV_Advanced1.7z
+│       ├── MV_Advanced2.7z
+│       ├── MV_Advanced3.7z
+│       ├── MV_Advanced4.7z
+│       ├── MV_Advanced5.7z
+│       ├── MV_Assets.7z
+│       ├── MV_Assets_S.7z
+│       ├── MV_Assets_S_Maps1.7z
+│       ├── MV_Assets_S_Maps2.7z
+│       ├── MV_Assets_S_Maps3.7z
+│       ├── MV_Assets_T.7z
+│       ├── MV_Assets_T_Maps1.7z
+│       ├── MV_Assets_T_Maps2.7z
+│       ├── MV_Assets_T_Maps3.7z
+│       ├── MV_Assets_T_Maps4.7z
+│       ├── MV_Assets_T_Maps5.7z
+│       ├── MV_Assets_V.7z
+│       ├── MV_Assets_V_Maps1.7z
+│       ├── MV_CB_ANI_1.7z
+│       ├── MV_CB_ANI_2.7z
+│       ├── MV_CB_ANI_3.7z
+│       ├── MV_Effects.7z
+│       ├── MV_Root.7z
+│       └── SHA256SUM
+├── fs2_open
+├── root_fs2.vp
+├── smarty_fs2.vp
+├── sparky_fs2.vp
+├── sparky_hi_fs2.vp
+├── stu_fs2.vp
+├── tango1_fs2.vp
+├── tango2_fs2.vp
+├── tango3_fs2.vp
+└── warble_fs2.vp</pre>
+
+        <p>(Optional)</p>
+
+        <pre>61c5c4620bd2314b69e3a5f3a85712833597996fa472a8222cd9a962aeb4279a MV_Advanced1.7z
+11f286800c3e64304f1b22200eaafd12cb17011f2c8796e7c4b265bcb8b0b4f8 MV_Advanced2.7z
+4373d7ae590dac2d3fb803257841c581efb41ca97d432b3632953268d9d2c0c6 MV_Advanced3.7z
+b04a234efe55711f9db9169e0a9db21688ab315b137a511f79eb91b62c40a4f4 MV_Advanced4.7z
+010f8da68d32212fb32fa2007bc3992f08af58e4cdf12fa297f30a3fdd30158a MV_Advanced5.7z
+0ed3be070ad942e0de0f58c8ba809e3c1e61ab63e2f2ca13efc0ef8422ac7e9f MV_Assets.7z
+11fcd43074190fb20f4bf242b5106a954028fbae621b1f23b658bd073c373226 MV_Assets_S.7z
+6dd00d32fd3fa7d199eb3242b9fa01833ad88fce29ec7c1af0ac7667572b029d MV_Assets_S_Maps1.7z
+5b8031123eda7a1ef2be43f56830303df8d28e4da924dd15ae5fcecc8d4ef6a0 MV_Assets_S_Maps2.7z
+2edc7a186f0c514a6840c8306bc8895678b216f112e01efa1ce2fcede227815b MV_Assets_S_Maps3.7z
+a9aba8a98b2f2312c528c4d3f17fdfe4e58e9b8a5b65ab68b8111ea3795b95e1 MV_Assets_T.7z
+1959a0eaa71129c2b5951f0c415da212093881e586f98f8a6c241cf861d9fc6c MV_Assets_T_Maps1.7z
+99e967f0d91e03a8b0d06f8bc5807122e22a5d5723eb2bdb1022b2891f6df8f4 MV_Assets_T_Maps2.7z
+5772373eb61157a8d9511adb789789e84b3aa4c357e7917add55452601f926cc MV_Assets_T_Maps3.7z
+b326a1e86d1e523762bd038643761161d60f6d19e6465a73dd11c4c82392e2b2 MV_Assets_T_Maps4.7z
+d46835ea5c14a7dc141f0a584e122a7e3d8d353a19d50db438e63e0a5b0ae790 MV_Assets_T_Maps5.7z
+f4c5addc4bf2e13de5f01f1e08d6b54dd22cc5955470091876d85fe6f3ffd639 MV_Assets_V.7z
+214238bc9e4aa7c5f218c121a86c492cf454abe69e1106728b419dabf5809866 MV_Assets_V_Maps1.7z
+7e50fd6b57f8879563dc6a06800c7e02c254743d9babbf21d8d8f090140062ce MV_CB_ANI_1.7z
+0625f92f64dedbc9ae1f095837df6a340e00a9be4aa7b828a2a2a3f1071cfba6 MV_CB_ANI_2.7z
+0389a4f5d456259c0e2e316a7030e9e549aeee553e779c5a40e8d67dcbe321a3 MV_CB_ANI_3.7z
+7f6b4a71d38cf27c8ae26e225e00d4d5f4ac50b17cb6bb330334a333edc7412a MV_Effects.7z
+b0a4989c3f80eed09cc632f509fba7120899f9fb00eff774ae1aaadecd929724 MV_Root.7z</pre>
+
+        <p>(Optional) Verify files [<a href="#how-to-verify-checksum">?</a>].</p>
+
+        <pre>cd fsopen/downloads/MVPS-4.5.1
+sha256sum -c SHA256SUM</pre>
+
+        <p>(Optional) The output should be:</p>
+
+        <pre>MV_Advanced1.7z: OK
+MV_Advanced2.7z: OK
+MV_Advanced3.7z: OK
+MV_Advanced4.7z: OK
+MV_Advanced5.7z: OK
+MV_Assets.7z: OK
+MV_Assets_S.7z: OK
+MV_Assets_S_Maps1.7z: OK
+MV_Assets_S_Maps2.7z: OK
+MV_Assets_S_Maps3.7z: OK
+MV_Assets_T.7z: OK
+MV_Assets_T_Maps1.7z: OK
+MV_Assets_T_Maps2.7z: OK
+MV_Assets_T_Maps3.7z: OK
+MV_Assets_T_Maps4.7z: OK
+MV_Assets_T_Maps5.7z: OK
+MV_Assets_V.7z: OK
+MV_Assets_V_Maps1.7z: OK
+MV_CB_ANI_1.7z: OK
+MV_CB_ANI_2.7z: OK
+MV_CB_ANI_3.7z: OK
+MV_Effects.7z: OK
+MV_Root.7z: OK</pre>
+
+        <p>Extract files.</p>
+
+        <pre>7z x -o"MVPS-4.5.1" "*.7z"</pre>
+
+        <p>Move extracted files to the mods directory in the main game
+        directory, <code>fsopen/mods/</code>.</p>
+
+        <pre>mkdir ../../mods
+mv MVPS-4.5.1 ../../mods/</pre>
+
+        <p>The resulting file structure:</p>
+
+        <pre>fsopen
+├── data
+│   ├── movies
+│   │   ├── BASTION.MVE
+│   │   ├── COLOSSUS.MVE
+│   │   ├── ENDPART1.MVE
+│   │   ├── ENDPRT2A.MVE
+│   │   ├── ENDPRT2B.MVE
+│   │   ├── INTRO.MVE
+│   │   ├── MONO1.MVE
+│   │   ├── MONO2.MVE
+│   │   ├── MONO3.MVE
+│   │   └── MONO4.MVE
+│   └── players
+│       ├── hud_1.hcf
+│       ├── hud_2.hcf
+│       └── hud_3.hcf
+├── downloads
+│   └── MVPS-4.5.1
+│       ├── MV_Advanced1.7z
+│       ├── MV_Advanced2.7z
+│       ├── MV_Advanced3.7z
+│       ├── MV_Advanced4.7z
+│       ├── MV_Advanced5.7z
+│       ├── MV_Assets.7z
+│       ├── MV_Assets_S.7z
+│       ├── MV_Assets_S_Maps1.7z
+│       ├── MV_Assets_S_Maps2.7z
+│       ├── MV_Assets_S_Maps3.7z
+│       ├── MV_Assets_T.7z
+│       ├── MV_Assets_T_Maps1.7z
+│       ├── MV_Assets_T_Maps2.7z
+│       ├── MV_Assets_T_Maps3.7z
+│       ├── MV_Assets_T_Maps4.7z
+│       ├── MV_Assets_T_Maps5.7z
+│       ├── MV_Assets_V.7z
+│       ├── MV_Assets_V_Maps1.7z
+│       ├── MV_CB_ANI_1.7z
+│       ├── MV_CB_ANI_2.7z
+│       ├── MV_CB_ANI_3.7z
+│       ├── MV_Effects.7z
+│       ├── MV_Root.7z
+│       └── SHA256SUM
+├── mods
+│   └── MVPS-4.5.1
+│       ├── mv_advanced1.vp
+│       ├── mv_advanced2.vp
+│       ├── mv_advanced3.vp
+│       ├── mv_advanced4.vp
+│       ├── mv_advanced5.vp
+│       ├── mv_assets_s_maps1.vp
+│       ├── mv_assets_s_maps2.vp
+│       ├── mv_assets_s_maps3.vp
+│       ├── mv_assets_s.vp
+│       ├── mv_assets_t_maps1.vp
+│       ├── mv_assets_t_maps2.vp
+│       ├── mv_assets_t_maps3.vp
+│       ├── mv_assets_t_maps4.vp
+│       ├── mv_assets_t_maps5.vp
+│       ├── mv_assets_t.vp
+│       ├── mv_assets_v_maps1.vp
+│       ├── mv_assets.vp
+│       ├── mv_assets_v.vp
+│       ├── mv_cb_ani_1.vp
+│       ├── mv_cb_ani_2.vp
+│       ├── mv_cb_ani_3.vp
+│       ├── mv_effects.vp
+│       └── mv_root.vp
+├── fs2_open
+├── root_fs2.vp
+├── smarty_fs2.vp
+├── sparky_fs2.vp
+├── sparky_hi_fs2.vp
+├── stu_fs2.vp
+├── tango1_fs2.vp
+├── tango2_fs2.vp
+├── tango3_fs2.vp
+└── warble_fs2.vp</pre>
+
+        <p>Launch the game.</p>
+
+        <pre>cd fsopen
+./fs2_open -mod mods/MVPS-4.5.1</pre>
+      </section>
+
+      <section>
+        <h2 id="example-fsport-mediavps">Example: Install FreeSpace Port MediaVPs (Linux)</h2>
+
+        <p>Given a fresh install of FreeSpace 2, FreeSpace Open, and
+        <strong>"Freespace Upgrade MediaVPs" (MVPS)</strong> in the
+        <code>fsopen</code> directory:</p>
+
+        <pre>fsopen
+├── data
+│   ├── movies
+│   │   ├── BASTION.MVE
+│   │   ├── COLOSSUS.MVE
+│   │   ├── ENDPART1.MVE
+│   │   ├── ENDPRT2A.MVE
+│   │   ├── ENDPRT2B.MVE
+│   │   ├── INTRO.MVE
+│   │   ├── MONO1.MVE
+│   │   ├── MONO2.MVE
+│   │   ├── MONO3.MVE
+│   │   └── MONO4.MVE
+│   └── players
+│       ├── hud_1.hcf
+│       ├── hud_2.hcf
+│       └── hud_3.hcf
+├── mods
+│   ├── fsport-3.6.9
+│   │   ├── data
+│   │   │   └── movies
+│   │   │       ├── ancients1.mve
+│   │   │       ├── ancients2.mve
+│   │   │       ├── ancients3.mve
+│   │   │       ├── ancients4.mve
+│   │   │       ├── ancients5.mve
+│   │   │       ├── CommandBrief.mve
+│   │   │       ├── ENDGAME.MVE
+│   │   │       ├── hallfight.mve
+│   │   │       ├── Intro.mve
+│   │   │       └── lab.mve
+│   │   ├── fsport3_6.vp
+│   │   ├── fsport-missions.vp
+│   │   ├── readme.txt
+│   │   ├── sparky_hi_fs1.vp
+│   │   ├── stu_fs1.vp
+│   │   ├── tango_fs1.vp
+│   │   ├── tango_hi1_fs1.vp
+│   │   ├── tango_hi2_fs1.vp
+│   │   ├── tango_hi3_fs1.vp
+│   │   ├── tango_hi4_fs1.vp
+│   │   ├── tango_hi5_fs1.vp
+│   │   └── warble_fs1.vp
+│   └── MVPS-4.5.1
+│       ├── mv_advanced1.vp
+│       ├── mv_advanced2.vp
+│       ├── mv_advanced3.vp
+│       ├── mv_advanced4.vp
+│       ├── mv_advanced5.vp
+│       ├── mv_assets_s_maps1.vp
+│       ├── mv_assets_s_maps2.vp
+│       ├── mv_assets_s_maps3.vp
+│       ├── mv_assets_s.vp
+│       ├── mv_assets_t_maps1.vp
+│       ├── mv_assets_t_maps2.vp
+│       ├── mv_assets_t_maps3.vp
+│       ├── mv_assets_t_maps4.vp
+│       ├── mv_assets_t_maps5.vp
+│       ├── mv_assets_t.vp
+│       ├── mv_assets_v_maps1.vp
+│       ├── mv_assets.vp
+│       ├── mv_assets_v.vp
+│       ├── mv_cb_ani_1.vp
+│       ├── mv_cb_ani_2.vp
+│       ├── mv_cb_ani_3.vp
+│       ├── mv_effects.vp
+│       └── mv_root.vp
+├── fs2_open
+├── root_fs2.vp
+├── smarty_fs2.vp
+├── sparky_fs2.vp
+├── sparky_hi_fs2.vp
+├── stu_fs2.vp
+├── tango1_fs2.vp
+├── tango2_fs2.vp
+├── tango3_fs2.vp
+└── warble_fs2.vp</pre>
+
+        <p>Download <a href="/mods/fsport-mediavps/4.5.1">FreeSpace
+        Port MediaVPs (4.5.1)</a> files and SHA256SUM to the
+        <code>fsopen/downloads/fsport-mediavps-4.5.1</code>
+        directory.</p>
+
+        <pre>fsopen
+├── data
+│   ├── movies
+│   └── players
+├── downloads
+│   └── fsport-mediavps-4.5.1
+│       ├── apngs.7z
+│       ├── Content.7z
+│       └── SHA256SUM
+├── mods
+│   ├── fsport-3.6.9
+│   └── MVPS-4.5.1
+├── fs2_open
+├── root_fs2.vp
+├── smarty_fs2.vp
+├── sparky_fs2.vp
+├── sparky_hi_fs2.vp
+├── stu_fs2.vp
+├── tango1_fs2.vp
+├── tango2_fs2.vp
+├── tango3_fs2.vp
+└── warble_fs2.vp</pre>
+
+        <p>(Optional)</p>
+
+        <pre>e99fa08d0d8f49b1c130358e10f3d898a95e6ee986b8a1c8c7c27c973e40d588 Content.7z
+703c7c3562ec526e4e53cde1b29f2bf0fb4e1ab439ec2ff0f8928bf8139f06b6 apngs.7z</pre>
+
+        <p>(Optional) Verify files [<a href="#how-to-verify-checksum">?</a>].</p>
+
+        <pre>cd fsopen/downloads/fsport-mediavps-4.5.1
+sha256sum -c SHA256SUM</pre>
+
+        <p>(Optional) The output should be:</p>
+
+        <pre>Content.7z: OK
+apngs.7z: OK</pre>
+
+        <p>Extract files.</p>
+
+        <pre>7z x -o"fsport-mediavps-4.5.1" "*.7z"</pre>
+
+        <p>Move extracted files to the mods directory in the main game
+        directory, <code>fsopen/mods/</code>.</p>
+
+        <pre>mv fsport-mediavps-4.5.1 ../../mods/</pre>
+
+        <p>The resulting file structure:</p>
+
+        <pre>fsopen
+├── data
+│   ├── movies
+│   │   ├── BASTION.MVE
+│   │   ├── COLOSSUS.MVE
+│   │   ├── ENDPART1.MVE
+│   │   ├── ENDPRT2A.MVE
+│   │   ├── ENDPRT2B.MVE
+│   │   ├── INTRO.MVE
+│   │   ├── MONO1.MVE
+│   │   ├── MONO2.MVE
+│   │   ├── MONO3.MVE
+│   │   └── MONO4.MVE
+│   └── players
+│       ├── hud_1.hcf
+│       ├── hud_2.hcf
+│       └── hud_3.hcf
+├── downloads
+│   └── fsport-mediavps-4.5.1
+│       ├── apngs.7z
+│       ├── Content.7z
+│       └── SHA256SUM
+├── mods
+│   ├── fsport-3.6.9
+│   │   ├── data
+│   │   │   └── movies
+│   │   │       ├── ancients1.mve
+│   │   │       ├── ancients2.mve
+│   │   │       ├── ancients3.mve
+│   │   │       ├── ancients4.mve
+│   │   │       ├── ancients5.mve
+│   │   │       ├── CommandBrief.mve
+│   │   │       ├── ENDGAME.MVE
+│   │   │       ├── hallfight.mve
+│   │   │       ├── Intro.mve
+│   │   │       └── lab.mve
+│   │   ├── fsport3_6.vp
+│   │   ├── fsport-missions.vp
+│   │   ├── readme.txt
+│   │   ├── sparky_hi_fs1.vp
+│   │   ├── stu_fs1.vp
+│   │   ├── tango_fs1.vp
+│   │   ├── tango_hi1_fs1.vp
+│   │   ├── tango_hi2_fs1.vp
+│   │   ├── tango_hi3_fs1.vp
+│   │   ├── tango_hi4_fs1.vp
+│   │   ├── tango_hi5_fs1.vp
+│   │   └── warble_fs1.vp
+│   ├── fsport-mediavps-4.5.1
+│   │   ├── mv_fsport_45x.vp
+│   │   ├── tango_apng1_fs1.vp
+│   │   ├── tango_apng2_fs1.vp
+│   │   ├── tango_apng3_fs1.vp
+│   │   ├── tango_apng4_fs1.vp
+│   │   └── tango_apng5_fs1.vp
+│   └── MVPS-4.5.1
+│       ├── mv_advanced1.vp
+│       ├── mv_advanced2.vp
+│       ├── mv_advanced3.vp
+│       ├── mv_advanced4.vp
+│       ├── mv_advanced5.vp
+│       ├── mv_assets_s_maps1.vp
+│       ├── mv_assets_s_maps2.vp
+│       ├── mv_assets_s_maps3.vp
+│       ├── mv_assets_s.vp
+│       ├── mv_assets_t_maps1.vp
+│       ├── mv_assets_t_maps2.vp
+│       ├── mv_assets_t_maps3.vp
+│       ├── mv_assets_t_maps4.vp
+│       ├── mv_assets_t_maps5.vp
+│       ├── mv_assets_t.vp
+│       ├── mv_assets_v_maps1.vp
+│       ├── mv_assets.vp
+│       ├── mv_assets_v.vp
+│       ├── mv_cb_ani_1.vp
+│       ├── mv_cb_ani_2.vp
+│       ├── mv_cb_ani_3.vp
+│       ├── mv_effects.vp
+│       └── mv_root.vp
+├── fs2_open
+├── root_fs2.vp
+├── smarty_fs2.vp
+├── sparky_fs2.vp
+├── sparky_hi_fs2.vp
+├── stu_fs2.vp
+├── tango1_fs2.vp
+├── tango2_fs2.vp
+├── tango3_fs2.vp
+└── warble_fs2.vp</pre>
+
+        <p>Launch the game.</p>
+
+        <pre>cd fsopen
+./fs2_open -mod mods/fsport-mediavps-4.5.1,mods/fsport-3.6.9,mods/MVPS-4.5.1</pre>
+      </section>
+
+      <section>
+        <h2 id="example-str-mainhalls">Example: Install "Silent Threat: Reborn" and Mainhalls (Linux)</h2>
+
+        <p>The "MjnMixael's HD Mainhalls" mod has several
+        mainhalls. This will focus on two mainhalls for "Silent
+        Threat: Reborn".</p>
+
+        <p><strong>NOTE:</strong> The "MjnMixael's HD Mainhalls" mod
+        has <code>-reparse_mainhall</code> in its Command-Line Flags
+        section. That's for development. It allows a developer to
+        adjust pixel positions without having to restart FSO. So,
+        there's no need for it during regular use.</p>
+
+        <p>Go to <a href="/mods/str/1.6.0">Silent Threat: Reborn
+        (1.6.0)</a> and download the following:</p>
+
+        <ul>
+          <li>Content</li>
+          <li>voices</li>
+          <li>movies</li>
+        </ul>
+
+        <p><strong>NOTE:</strong> "Silent Threat: Reborn" requires "FreeSpace Port".</p>
+
+        <p>Go to <a href="/mods/MjnMHs/1.4.8">MjnMixael's HD Mainhalls (1.4.8)</a>
+        and download the following two mainhalls and required audio:</p>
+
+        <ul>
+          <li>audio_all</li>
+          <li>krios</li>
+          <li>soyakaze</li>
+        </ul>
+
+        <p>After downloading and putting the extracted files into the
+        <code>fsopen/mods/</code> directory, the resulting file
+        structure is:</p>
+
+        <pre>fsopen
+├── data
+│   ├── movies
+│   │   ├── BASTION.MVE
+│   │   ├── COLOSSUS.MVE
+│   │   ├── ENDPART1.MVE
+│   │   ├── ENDPRT2A.MVE
+│   │   ├── ENDPRT2B.MVE
+│   │   ├── INTRO.MVE
+│   │   ├── MONO1.MVE
+│   │   ├── MONO2.MVE
+│   │   ├── MONO3.MVE
+│   │   └── MONO4.MVE
+│   └── players
+│       ├── hud_1.hcf
+│       ├── hud_2.hcf
+│       └── hud_3.hcf
+├── mods
+│   ├── fsport-3.6.9
+│   │   ├── data
+│   │   │   └── movies
+│   │   │       ├── ancients1.mve
+│   │   │       ├── ancients2.mve
+│   │   │       ├── ancients3.mve
+│   │   │       ├── ancients4.mve
+│   │   │       ├── ancients5.mve
+│   │   │       ├── CommandBrief.mve
+│   │   │       ├── ENDGAME.MVE
+│   │   │       ├── hallfight.mve
+│   │   │       ├── Intro.mve
+│   │   │       └── lab.mve
+│   │   ├── fsport3_6.vp
+│   │   ├── fsport-missions.vp
+│   │   ├── readme.txt
+│   │   ├── sparky_hi_fs1.vp
+│   │   ├── stu_fs1.vp
+│   │   ├── tango_fs1.vp
+│   │   ├── tango_hi1_fs1.vp
+│   │   ├── tango_hi2_fs1.vp
+│   │   ├── tango_hi3_fs1.vp
+│   │   ├── tango_hi4_fs1.vp
+│   │   ├── tango_hi5_fs1.vp
+│   │   └── warble_fs1.vp
+│   ├── fsport-mediavps-4.5.1
+│   │   ├── mv_fsport_45x.vp
+│   │   ├── tango_apng1_fs1.vp
+│   │   ├── tango_apng2_fs1.vp
+│   │   ├── tango_apng3_fs1.vp
+│   │   ├── tango_apng4_fs1.vp
+│   │   └── tango_apng5_fs1.vp
+│   ├── MjnMHs-1.4.8
+│   │   └── data
+│   │       ├── interface
+│   │       │   ├── 2_kri-d1.png
+│   │       │   ├── 2_kri-d2.png
+│   │       │   ├── 2_kri-d3.png
+│   │       │   ├── 2_kri-d4.png
+│   │       │   ├── 2_kri-d5.png
+│   │       │   ├── 2_kri-d6.png
+│   │       │   ├── 2_kri-d7.png
+│   │       │   ├── 2_kri-m1-a.png
+│   │       │   ├── 2_kri-m1-b.png
+│   │       │   ├── 2_kri-m1-c.png
+│   │       │   ├── 2_kri-m2-a.png
+│   │       │   ├── 2_kri-m2-b.png
+│   │       │   ├── 2_kri-m3-a.png
+│   │       │   ├── 2_kri-m3-b.png
+│   │       │   ├── 2_kri-m4-a.png
+│   │       │   ├── 2_kri-m4-b.png
+│   │       │   ├── 2_kri-m4-c.png
+│   │       │   ├── 2_kri-m4-d.png
+│   │       │   ├── 2_kri-m5-a.png
+│   │       │   ├── 2_kri-m5-b.png
+│   │       │   ├── 2_mainhall_krios-m.pcx
+│   │       │   ├── 2_mainhall_krios.png
+│   │       │   ├── 2_MainHall_Soyakaze-m.pcx
+│   │       │   ├── 2_mainhall_soyakaze.png
+│   │       │   ├── 2_soy-d1.png
+│   │       │   ├── 2_soy-d2.png
+│   │       │   ├── 2_soy-d3.png
+│   │       │   ├── 2_soy-d4.png
+│   │       │   ├── 2_soy-d5.png
+│   │       │   ├── 2_soy-d6.png
+│   │       │   ├── 2_soy-d7.png
+│   │       │   ├── 2_soy-m1-a.png
+│   │       │   ├── 2_soy-m1-b.png
+│   │       │   ├── 2_soy-m1-c.png
+│   │       │   ├── 2_soy-m1-d.png
+│   │       │   ├── 2_soy-m2-a.png
+│   │       │   ├── 2_soy-m2-b.png
+│   │       │   ├── 2_soy-m3-a.png
+│   │       │   ├── 2_soy-m4-a.png
+│   │       │   ├── 2_soy-m5-a.png
+│   │       │   ├── kri_title_0000.png
+│   │       │   ├── kri_title.eff
+│   │       │   ├── soy_title_0000.png
+│   │       │   └── soy_title.eff
+│   │       ├── missions
+│   │       │   ├── emptymission.fs2
+│   │       │   ├── MainhallKrios.fc2
+│   │       │   └── MainhallSoyakaze.fc2
+│   │       ├── music
+│   │       │   ├── Krios-Title.ogg
+│   │       │   └── Soyakaze-Title.ogg
+│   │       ├── sounds
+│   │       │   ├── CartDriveAway.ogg
+│   │       │   ├── CartDriveReturn.ogg
+│   │       │   ├── CartLiftDown.ogg
+│   │       │   ├── CartLiftUp.ogg
+│   │       │   ├── CraneIn01.ogg
+│   │       │   ├── CraneIn02.ogg
+│   │       │   ├── CraneIn03.ogg
+│   │       │   ├── CraneIn04.ogg
+│   │       │   ├── CraneManuv01.ogg
+│   │       │   ├── CraneManuv02.ogg
+│   │       │   ├── CraneOut01.ogg
+│   │       │   ├── CraneOut02.ogg
+│   │       │   ├── CraneOut03.ogg
+│   │       │   ├── CraneOut04.ogg
+│   │       │   ├── Drilling01.ogg
+│   │       │   ├── Drilling02.ogg
+│   │       │   ├── ElevatorDown.ogg
+│   │       │   ├── ElevatorUp.ogg
+│   │       │   ├── ElevDown.ogg
+│   │       │   ├── ElevUp.ogg
+│   │       │   ├── Hydraul01.ogg
+│   │       │   ├── Hydraul02.ogg
+│   │       │   ├── Hydraul03.ogg
+│   │       │   ├── Hydraul04.ogg
+│   │       │   ├── Hydraul05.ogg
+│   │       │   ├── Hydraul06.ogg
+│   │       │   ├── Hydraul07.ogg
+│   │       │   ├── Hydraul08.ogg
+│   │       │   ├── Hydraul09.ogg
+│   │       │   ├── Hydraul10.ogg
+│   │       │   ├── Hydraul11.ogg
+│   │       │   ├── MH_Lightning_1.ogg
+│   │       │   ├── MH_Lightning_2.ogg
+│   │       │   ├── MH_Lightning_3.ogg
+│   │       │   ├── MH_Lightning_4.ogg
+│   │       │   ├── MH_Lightning_5.ogg
+│   │       │   ├── MH_Thunder_1.ogg
+│   │       │   ├── MH_Thunder_2.ogg
+│   │       │   ├── MH_Thunder_3.ogg
+│   │       │   ├── MH_Thunder_4.ogg
+│   │       │   ├── MH_Thunder_5.ogg
+│   │       │   ├── new_camp_off.ogg
+│   │       │   ├── new_camp_on.ogg
+│   │       │   ├── new_Cart_dwn.ogg
+│   │       │   ├── new_Cart_up.ogg
+│   │       │   ├── new_Crane_1.ogg
+│   │       │   ├── new_Crane_2.ogg
+│   │       │   ├── new_doorclose.ogg
+│   │       │   ├── new_dooropen.ogg
+│   │       │   ├── new_emptysound.ogg
+│   │       │   ├── new_Exitclose.ogg
+│   │       │   ├── new_Exitopen.ogg
+│   │       │   ├── new_itemdrawin.ogg
+│   │       │   ├── new_itemdraw.ogg
+│   │       │   ├── new_itemdrawout.ogg
+│   │       │   ├── new_L_Crane_A.ogg
+│   │       │   ├── new_L_Crane_B.ogg
+│   │       │   ├── new_lift01a.ogg
+│   │       │   ├── new_Lift_Mix.ogg
+│   │       │   ├── new_Option1.ogg
+│   │       │   ├── new_Option2.ogg
+│   │       │   ├── new_pa_1.ogg
+│   │       │   ├── new_pa_2.ogg
+│   │       │   ├── new_pa_3.ogg
+│   │       │   ├── new_R_Crane_A.ogg
+│   │       │   ├── new_R_Crane_B.ogg
+│   │       │   ├── new_Skiff.ogg
+│   │       │   ├── new_techroom1.ogg
+│   │       │   ├── new_techroom2.ogg
+│   │       │   ├── new_V_Exit_Close.ogg
+│   │       │   ├── new_V_Exit_Open.ogg
+│   │       │   ├── new_V_Hatch_Close.ogg
+│   │       │   ├── new_V_Hatch_Open.ogg
+│   │       │   ├── new_V_Head_1.ogg
+│   │       │   ├── new_V_Head_2.ogg
+│   │       │   ├── new_V_Lift_Down.ogg
+│   │       │   ├── new_V_Lift_Up.ogg
+│   │       │   ├── new_V_Lite_Off.ogg
+│   │       │   ├── new_V_Lite_On.ogg
+│   │       │   ├── new_V_Map_Off.ogg
+│   │       │   ├── new_V_Map_On.ogg
+│   │       │   ├── new_V_Pa_01.ogg
+│   │       │   ├── new_V_Pa_02.ogg
+│   │       │   ├── new_V_Pa_03.ogg
+│   │       │   ├── new_V_Roll_Close.ogg
+│   │       │   ├── new_V_Roll_Open.ogg
+│   │       │   ├── new_weld01.ogg
+│   │       │   ├── new_weld02.ogg
+│   │       │   ├── S_Barracks.ogg
+│   │       │   ├── S_Campaign.ogg
+│   │       │   ├── ScreenOn2.ogg
+│   │       │   ├── S_Exit.ogg
+│   │       │   ├── SlideDoorClose.ogg
+│   │       │   ├── SlideDoorOpen.ogg
+│   │       │   ├── S_Options_Off.ogg
+│   │       │   ├── S_Options_On.ogg
+│   │       │   ├── S_PA_01.ogg
+│   │       │   ├── S_PA_02.ogg
+│   │       │   ├── S_PA_03.ogg
+│   │       │   ├── S_PA_04.ogg
+│   │       │   ├── S_PA_05.ogg
+│   │       │   ├── S_Ready.ogg
+│   │       │   ├── S_Tech_Off.ogg
+│   │       │   ├── S_Tech_On.ogg
+│   │       │   ├── SwitchThing.ogg
+│   │       │   ├── TechDoorClose.ogg
+│   │       │   ├── TechDoorOpen.ogg
+│   │       │   ├── TechRoomSpec.ogg
+│   │       │   ├── Welding01.ogg
+│   │       │   ├── Welding02.ogg
+│   │       │   ├── Welding03.ogg
+│   │       │   ├── Welding04.ogg
+│   │       │   ├── Welding05.ogg
+│   │       │   └── Welding06.ogg
+│   │       └── tables
+│   │           ├── Creative Commons CC BY-NC-ND 4.txt
+│   │           ├── krios-hall.tbm
+│   │           ├── krios-hlp.tbm
+│   │           ├── krios-mus.tbm
+│   │           ├── mainhall-crd.tbm
+│   │           ├── mainhall-snd.tbm
+│   │           ├── soyakaze-hall.tbm
+│   │           ├── soyakaze-hlp.tbm
+│   │           └── soyakaze-mus.tbm
+│   ├── MVPS-4.5.1
+│   │   ├── mv_advanced1.vp
+│   │   ├── mv_advanced2.vp
+│   │   ├── mv_advanced3.vp
+│   │   ├── mv_advanced4.vp
+│   │   ├── mv_advanced5.vp
+│   │   ├── mv_assets_s_maps1.vp
+│   │   ├── mv_assets_s_maps2.vp
+│   │   ├── mv_assets_s_maps3.vp
+│   │   ├── mv_assets_s.vp
+│   │   ├── mv_assets_t_maps1.vp
+│   │   ├── mv_assets_t_maps2.vp
+│   │   ├── mv_assets_t_maps3.vp
+│   │   ├── mv_assets_t_maps4.vp
+│   │   ├── mv_assets_t_maps5.vp
+│   │   ├── mv_assets_t.vp
+│   │   ├── mv_assets_v_maps1.vp
+│   │   ├── mv_assets.vp
+│   │   ├── mv_assets_v.vp
+│   │   ├── mv_cb_ani_1.vp
+│   │   ├── mv_cb_ani_2.vp
+│   │   ├── mv_cb_ani_3.vp
+│   │   ├── mv_effects.vp
+│   │   └── mv_root.vp
+│   └── str-1.6.0
+│       ├── data
+│       │   └── movies
+│       │       ├── STR_Endgame.mp4
+│       │       └── STR_Intro.mp4
+│       ├── fsport-str-voice.vp
+│       ├── fsport-str.vp
+│       └── readme.txt
+├── fs2_open
+├── root_fs2.vp
+├── smarty_fs2.vp
+├── sparky_fs2.vp
+├── sparky_hi_fs2.vp
+├── stu_fs2.vp
+├── tango1_fs2.vp
+├── tango2_fs2.vp
+├── tango3_fs2.vp
+└── warble_fs2.vp</pre>
+
+        <p>Launch the game with "Silent Threat: Reborn" and "MjnMixael's HD Mainhalls".</p>
+
+        <pre>cd fsopen
+./fs2_open -mod mods/fsport-mediavps-4.5.1,str-1.6.0,mods/fsport-3.6.9,mods/MVPS-4.5.1,mods/MjnMHs-1.4.8</pre>
+      </section>
+
+      <section>
+        <h2 id="troubleshooting">Troubleshooting</h2>
+
+        <h3>Issue: Started playing mission without weapons or other oddities</h3>
+
+        <p>This may be due to a corrupted campaign file. Restart the
+        campaign using the in-game menu or delete the
+        <code>Pilot.CAMPAIGN_NAME.cfg</code> file.</p>
+
+        <h3>Issue: Resetting the campaign using the in-game menu does not reset the campaign</h3>
+
+        <p>This may be due to having differing capitalization in your
+        pilot JSON file and the game files, resulting in two campaign
+        files (with differing capitalization) for the same
+        campaign. Make sure the campaign name capitalization is
+        correct in the pilot JSON file and try resetting the campaign
+        again, or delete the <code>Pilot.CAMPAIGN_NAME.cfg</code>
+        file.</p>
+      </section>
+    </main>
+  </body>
+</html>

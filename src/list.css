@@ -1,0 +1,80 @@
+main {
+  padding: 25px;
+  width: min(90vw, 1200px);
+  margin: 0 auto;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.top-bar h1 {
+  display: inline-block;
+  margin: 0;
+  margin-right: 1em;
+  padding: 5px;
+  white-space: nowrap;
+}
+
+.search-box {
+  display: inline-block;
+  padding: 0 1em;
+  font-size: 14px;
+  width: 100%;
+  height: 2.5em;
+  color: #111;
+  background-color: #aaa;
+  border: 2px solid #111;
+  border-radius: 5px;
+}
+
+.search-box:focus {
+  outline: 5px solid #7777bf;
+}
+
+input::placeholder {
+  color: #555;
+  opacity: 1;
+}
+
+.mod-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 25px;
+}
+
+main a:hover {
+  filter: brightness(110%);
+}
+
+main a:hover .mod-img {
+  filter: drop-shadow(0 0 10px #7777bf);
+}
+
+.mod-img {
+  /* will-change fixes residual drop-shadow after search on Safari */
+  will-change: filter;
+
+  display: block;
+  width: 150px;
+  height: 225px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border: 2px solid #111;
+  border-radius: 10px;
+  background-color: #555;
+  filter: drop-shadow(0 0 5px #7777bf);
+}
+
+.mod-item-title {
+  display: block;
+  text-align: center;
+  color: #eee;
+  text-decoration: none;
+}
+
+.is-hidden {
+  display: none;
+}

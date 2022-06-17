@@ -1,0 +1,27 @@
+[package]
+name = "neb"
+version = "1.0.0"
+authors = ["Daft Mugi"]
+license = "MIT"
+readme = "README.md"
+description = "Command-line program and web view for exploring Knossos/FSNebula data."
+repository = "https://github.com/daftmugi/neb"
+edition = "2021"
+
+[dependencies]
+# console
+curl = "0.4.43"
+indicatif = "0.16.2"
+regex = { version = "1.5.6", default-features = false, features = ["std"] }
+rusqlite = { version = "0.27.0", features = ["serde_json", "bundled"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# web
+log = "0.4.0"
+env_logger = "0.7.1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+warp = { version = "0.3.2", default-features = false }
+tinytemplate = "1.1"
+http = { version = "0.2" }
+base64 = { version = "0.13.0" }

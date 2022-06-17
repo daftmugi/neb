@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mods - Neb Web</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/mod_list.css">
+    <script defer src="/mod_list.js"></script>
+  </head>
+  <body style="background-color: #111">
+    <nav class="site-nav">
+      <div class="nav-container">
+        <div>
+          <span class="site-title">Neb Web</span>
+        </div>
+        <div class="site-links">
+          <a href="/mods">Mods</a> <a href="/about">About</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="top-bar">
+        <h1>Mods</h1>
+        <input type="search"
+               id="search-box"
+               class="search-box"
+               placeholder="Click or press 'S' to start a search for a mod"
+               autocomplete="off">
+      </div>
+
+      <div id="mod-list" class="mod-list">
+        {{ for m in mods }}
+        <a class="mod-item" href="/mods/{m.mid}">
+          {{ if m.tile }}
+          <img loading="lazy" class="mod-img" src="{m.tile}">
+          {{ else }}
+          <div class="mod-img mod-img-placeholder"></div>
+          {{ endif }}
+          <span class="mod-item-title">{m.title}</span>
+        </a>
+        {{ endfor }}
+      </div>
+    </main>
+  </body>
+</html>
