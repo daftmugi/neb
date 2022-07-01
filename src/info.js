@@ -8,24 +8,30 @@ let $doneIcon = document.querySelector(".icon-done")
 let $message = document.querySelector("#copy-sha256sum-message")
 let sha256sum = document.querySelector("#sha256sum").textContent + "\n"
 let messageTimeout
-$copyButton.addEventListener("click", e => {
-  clearTimeout(messageTimeout)
 
-  navigator.clipboard.writeText(sha256sum)
-  $message.classList.remove("hidden")
-  $message.classList.add("copy-sha256sum-message-show")
-  $copyButton.classList.add("copy-sha256sum-btn-show")
-  $copyIcon.classList.add("hidden")
-  $doneIcon.classList.remove("hidden")
+// Clipboard needs localhost or HTTPS
+if (navigator.clipboard === undefined) {
+  $copyButton.classList.add("hidden")
+} else {
+  $copyButton.addEventListener("click", e => {
+    clearTimeout(messageTimeout)
 
-  messageTimeout = setTimeout(() => {
-    $message.classList.add("hidden")
-    $message.classList.remove("copy-sha256sum-message-show")
-    $copyButton.classList.remove("copy-sha256sum-btn-show")
-    $copyIcon.classList.remove("hidden")
-    $doneIcon.classList.add("hidden")
-  }, 1000)
-})
+    navigator.clipboard.writeText(sha256sum)
+    $message.classList.remove("hidden")
+    $message.classList.add("copy-sha256sum-message-show")
+    $copyButton.classList.add("copy-sha256sum-btn-show")
+    $copyIcon.classList.add("hidden")
+    $doneIcon.classList.remove("hidden")
+
+    messageTimeout = setTimeout(() => {
+      $message.classList.add("hidden")
+      $message.classList.remove("copy-sha256sum-message-show")
+      $copyButton.classList.remove("copy-sha256sum-btn-show")
+      $copyIcon.classList.remove("hidden")
+      $doneIcon.classList.add("hidden")
+    }, 1000)
+  })
+}
 
 let $selectVersion = document.querySelector("#select-version")
 $selectVersion.addEventListener("change", e => {
