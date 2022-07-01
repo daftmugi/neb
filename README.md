@@ -18,6 +18,15 @@
 4. Copy `./target/release/neb` wherever you want.
 
 
+## Installation on Linux
+
+You may need to install the following packages on Ubuntu:
+
+```sh
+apt install build-essential pkg-config libssl-dev
+```
+
+
 ## Download Knossos Repo from FSNebula
 
 ```sh
