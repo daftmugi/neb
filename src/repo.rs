@@ -545,7 +545,7 @@ static LIST_STMT: &str = r#"
 SELECT mid, version, title, tile, max(last_update)
 FROM mods
 GROUP BY mid
-ORDER BY title;
+ORDER BY LOWER(title);
 "#;
 
 static LIST_MID_AND_VERSION_STMT: &str = r#"
