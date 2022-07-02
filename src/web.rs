@@ -399,18 +399,20 @@ fn format_hostname(value: &Value, output: &mut String) -> tinytemplate::error::R
   }
 }
 
-// NOTE: Files were not moved to their own directories, because I'm
-// not sure if Windows will accept forward slashes in paths.
-static FAVICON: &[u8; 59531] = include_bytes!("favicon.png");
-static STYLE_CSS: &str = include_str!("style.css");
-static ABOUT_CSS: &str = include_str!("about.css");
-static ABOUT_PAGE: &str = include_str!("about.html");
-static MOD_LIST_CSS: &str = include_str!("mod_list.css");
-static MOD_LIST_JS: &str = include_str!("mod_list.js");
-static MOD_LIST_PAGE: &str = include_str!("mod_list.html");
-static MOD_INFO_CSS: &str = include_str!("mod_info.css");
-static MOD_INFO_JS: &str = include_str!("mod_info.js");
-static NOT_FOUND_PAGE: &str = include_str!("not_found.html");
-static MOD_INFO_PAGE: &str = include_str!("mod_info.html");
-static BBPARSER_JS: &str = include_str!("bbparser.js");
-static XBBCODE_JS: &str = include_str!("xbbcode.js");
+static FAVICON: &[u8; 59531] = include_bytes!("../web/favicon.png");
+
+static NOT_FOUND_PAGE: &str = include_str!("../web/not_found.html");
+static ABOUT_PAGE: &str = include_str!("../web/about.html");
+static MOD_LIST_PAGE: &str = include_str!("../web/mod_list.html");
+static MOD_INFO_PAGE: &str = include_str!("../web/mod_info.html");
+
+static STYLE_CSS: &str = include_str!("../web/css/style.css");
+static ABOUT_CSS: &str = include_str!("../web/css/about.css");
+static MOD_LIST_CSS: &str = include_str!("../web/css/mod_list.css");
+static MOD_INFO_CSS: &str = include_str!("../web/css/mod_info.css");
+
+static MOD_LIST_JS: &str = include_str!("../web/js/mod_list.js");
+static MOD_INFO_JS: &str = include_str!("../web/js/mod_info.js");
+
+static BBPARSER_JS: &str = include_str!("../web/js/vendor/bbparser.js");
+static XBBCODE_JS: &str = include_str!("../web/js/vendor/xbbcode.js");
