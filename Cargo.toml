@@ -1,6 +1,6 @@
 [package]
 name = "neb"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["Daft Mugi"]
 license = "MIT"
 readme = "README.md"
