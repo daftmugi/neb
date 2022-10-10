@@ -121,7 +121,7 @@ EXAMPLES
   neb search repo.db silent
 
   # Print list of versions of mod id
-  neb versions repo.db
+  neb versions repo.db str
 
   # Print mod.json of mod by mid of latest version
   neb json repo.db str

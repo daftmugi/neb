@@ -106,7 +106,7 @@ EXAMPLES
   {cmd_name} search repo.db silent
 
   # Print list of versions of mod id
-  {cmd_name} versions repo.db
+  {cmd_name} versions repo.db str
 
   # Print mod.json of mod by mid of latest version
   {cmd_name} json repo.db str
