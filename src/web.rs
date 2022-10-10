@@ -31,6 +31,7 @@ struct ModInfoContext<'a> {
   versions: &'a Vec<Version>,
   url_path: String,
   is_total_conversion: bool,
+  is_engine: bool,
   packages: &'a Vec<Package>,
   total_size: u64,
   sha256sum: String,
@@ -226,6 +227,7 @@ async fn info_page(
   let mod_json: Value = serde_json::from_str(m.mod_json.as_str()).unwrap();
 
   let is_total_conversion = mod_json["type"] == "tc";
+  let is_engine = mod_json["type"] == "engine";
 
   let mut packages: Vec<Package> = Vec::new();
 
@@ -288,6 +290,7 @@ async fn info_page(
     versions: &versions,
     url_path,
     is_total_conversion,
+    is_engine,
     packages: &packages,
     total_size,
     sha256sum,

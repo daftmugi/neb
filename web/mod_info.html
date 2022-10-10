@@ -79,7 +79,11 @@
             <div>
               {p.filename} ({p.filesize | bytes})
               {{ for url in p.urls }}
+              {{ if is_engine }}
+              | <a rel="noopener noreferrer" href="{url}">{url | hostname}</a>
+              {{ else }}
               | <a rel="noopener noreferrer" href="{url}/rn/{p.filename}">{url | hostname}</a>
+              {{ endif }}
               {{ endfor }}
             </div>
             <div class="file-checksum">SHA256: {p.checksum}</div>
